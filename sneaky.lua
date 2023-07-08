@@ -81,7 +81,7 @@ function sneaky:make_footstep_sfx()
   y_dist = abs(sneaky.gy - player.gy)
   dist =  x_dist + y_dist
 
-  if dist > 2 and dist <= self.sneaky.footstep_range then
+  if dist > 2 and dist <= self.footstep_range then
     sfx(02)
   elseif dist == 2 then
     sfx(03)

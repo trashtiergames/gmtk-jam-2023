@@ -41,9 +41,10 @@ function _draw()
     -- pal(0, 5)
     map(0, 0, 0, 0)
   end
-  sneaky:draw()
+  -- sneaky:draw()
   pal()
   clip()
+  sneaky:draw()
   print(debug, 0, 100)
   print("points: " .. points)
 end

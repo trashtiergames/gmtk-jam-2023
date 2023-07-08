@@ -5,6 +5,7 @@ __lua__
 -- by trash tier games
 #include class.lua
 #include player.lua
+#include paths.lua
 #include sneaky.lua
 #include main.lua
 __gfx__

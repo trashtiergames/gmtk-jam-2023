@@ -7,7 +7,7 @@ function sneaky:init()
   self.y = 0
   self.w = 8
   self.h = 8
-  self.sprite = 65
+  self.sprite = 80
   self.state = "sneaking"
   self.anim_timer = 0
   self.anim_timer_max = 0.2
@@ -16,23 +16,7 @@ function sneaky:init()
   self.step_timer_max = 1
   self.visible = true
   self.footstep_range = 4
-  self.path = {
-    {0, 0},
-    {1, 0},
-    {2, 0},
-    {3, 0},
-    {4, 0},
-    {4, 1},
-    {4, 2},
-    {4, 3},
-    {5, 3},
-    {6, 3},
-    {6, 4},
-    {6, 5},
-    {7, 5},
-    {7, 6},
-    {7, 7}
-  }
+  self.path = path_a
 end
 
 function sneaky:update()

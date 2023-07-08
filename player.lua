@@ -3,10 +3,10 @@ player = class()
 
 function player:init()
   -- grid x and y
-  self.gx = 4
-  self.gy = 5
-  self.x = 32
-  self.y = 40
+  self.gx = 8
+  self.gy = 9
+  self.x = self.gx * 8
+  self.y = self.gy * 8
   self.sprite = 64
   self.direction = "up"
   self.light = {}
@@ -23,8 +23,8 @@ function player:update()
 	if (btnp(3)) new_y += 1 player.direction = "down"
 	
 	if can_move(new_x,new_y) then
-		player.gx = mid(0,new_x,7)
-		player.gy = mid(0,new_y,7)
+		player.gx = mid(0,new_x,15)
+		player.gy = mid(0,new_y,15)
 	else
 		-- sfx(0)
 	end 

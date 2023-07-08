@@ -1,13 +1,13 @@
-playstate = class()
+play_state = class()
 
-function playstate:init()
+function play_state:init()
   points = 0
   sunny = false
   player = player()
   sneaky = sneaky()
 end
 
-function playstate:update()
+function play_state:update()
   if (btnp(5)) sunny = true debug = "btn 5 pressed"
   sneaky:update()
   player:update()
@@ -15,7 +15,7 @@ function playstate:update()
   check_for_sneaky()
 end
 
-function playstate:draw()
+function play_state:draw()
   -- clear screen
 	cls()
   palette_swap_table = {

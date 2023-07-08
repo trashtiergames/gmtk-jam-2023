@@ -1,15 +1,15 @@
 function _init()
   wall = 0
   debug = "nothing to debug"
-  statemachine = statemachine()
+  state_machine = state_machine()
 end
 
 function _update60()
-  statemachine:update()
+  state_machine:update()
 end
 
 function _draw()
-  statemachine:draw()
+  state_machine:draw()
 end
 
 function is_tile(tile_type,x,y)

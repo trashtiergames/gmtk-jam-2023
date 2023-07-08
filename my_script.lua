@@ -1,17 +1,24 @@
 function _init()
   wall = 0
+  debug = "nothing to debug"
 
   player = {
     -- grid x and y
-    x = 4,
-    y = 5,
+    gx = 4,
+    gy = 5,
+    x = 32,
+    y = 40,
     sprite = 64,
     direction = "up"
   }
 
   sneaky = {
+    gx = 0,
+    gy = 0,
     x = 0,
     y = 0,
+    w = 8,
+    h = 8,
     sprite = 65,
     state = "sneaking",
     step = 1,
@@ -43,6 +50,7 @@ function _update60()
   move_sneaky()
   move_player()
   update_light(player.direction)
+  check_for_sneaky()
 end
 
 function _draw()
@@ -58,13 +66,14 @@ function _draw()
   )
   draw_sneaky()
   clip()
+  print(debug, 0, 100)
 end
 
 function draw_player()
   spr(
     player.sprite,
-    player.x * 8,
-    player.y * 8
+    player.x,
+    player.y
   )
   rect(
     player.light.x,
@@ -78,14 +87,14 @@ end
 function draw_sneaky()
   spr(
     sneaky.sprite,
-    sneaky.x * 8,
-    sneaky.y * 8
+    sneaky.x,
+    sneaky.y
   )
 end
 
 function move_player()
-	new_x = player.x
-	new_y = player.y
+	new_x = player.gx
+	new_y = player.gy
 	
 	if (btnp(0)) new_x -= 1 player.direction = "left"
 	if (btnp(1)) new_x += 1 player.direction = "right"
@@ -93,11 +102,13 @@ function move_player()
 	if (btnp(3)) new_y += 1 player.direction = "down"
 	
 	if can_move(new_x,new_y) then
-		player.x = mid(0,new_x,7)
-		player.y = mid(0,new_y,7)
+		player.gx = mid(0,new_x,7)
+		player.gy = mid(0,new_y,7)
 	else
 		-- sfx(0)
 	end 
+  player.x = player.gx * 8
+  player.y = player.gy * 8
   print(player.direction)
 end
 
@@ -107,7 +118,9 @@ function move_sneaky()
     sneaky.step_timer = 0
     sneaky.step += 1
     local coords = sneaky.path[sneaky.step]
-    sneaky.x, sneaky.y = coords[1], coords[2]
+    sneaky.gx, sneaky.gy = coords[1], coords[2]
+    sneaky.x = sneaky.gx * 8
+    sneaky.y = sneaky.gy * 8
   end
 end
 
@@ -125,25 +138,43 @@ end
 
 function update_light(direction)
   if (player.direction == "left") then
-    player.light.x = (player.x - 1) * 8
-    player.light.y = (player.y - 1) * 8
+    player.light.x = (player.gx - 1) * 8
+    player.light.y = (player.gy - 1) * 8
     player.light.w = 8
     player.light.h = 8 * 3
   elseif (player.direction == "right") then
-    player.light.x = (player.x + 1) * 8
-    player.light.y = (player.y - 1) * 8
+    player.light.x = (player.gx + 1) * 8
+    player.light.y = (player.gy - 1) * 8
     player.light.w = 8
     player.light.h = 8 * 3
   elseif (player.direction == "up") then
-    player.light.x = (player.x - 1) * 8
-    player.light.y = (player.y - 1) * 8
+    player.light.x = (player.gx - 1) * 8
+    player.light.y = (player.gy - 1) * 8
     player.light.w = 8 * 3
     player.light.h = 8
   elseif (player.direction == "down") then
-    player.light.x = (player.x - 1) * 8
-    player.light.y = (player.y + 1) * 8
+    player.light.x = (player.gx - 1) * 8
+    player.light.y = (player.gy + 1) * 8
     player.light.w = 8 * 3
     player.light.h = 8
   end
 end
 
+function collides(a, b)
+  -- AABB collision detection (a and b need to have x, y, w, h)
+  if (a.x < b.x + b.w
+      and a.x + a.w > b.x
+      and a.y < b.y + b.h
+      and a.y + a.h > b.y) then
+    return true
+  else
+    return false
+  end
+end
+
+function check_for_sneaky()
+  if collides(sneaky, player.light) then
+    debug = "collision detected"
+    sneaky.state = "discovered"
+  end
+end

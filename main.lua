@@ -2,11 +2,13 @@ function _init()
   wall = 0
   debug = "nothing to debug"
   points = 0
+  sunny = false
   player = player()
   sneaky = sneaky()
 end
 
 function _update60()
+  if (btnp(5)) sunny = true debug = "btn 5 pressed"
   sneaky:update()
   player:update()
   update_light(player.direction)
@@ -16,6 +18,10 @@ end
 function _draw()
 	-- clear screen
 	cls()
+  palette_swap_table = {
+    [0] = 5,
+    [5] = 6
+  }
   map(0, 0, 0, 0)
 	player:draw()
   clip(
@@ -24,7 +30,9 @@ function _draw()
     player.light.w, 
     player.light.h
   )
+  if (sunny) pal(palette_swap_table) map(0, 0, 0, 0)
   sneaky:draw()
+  pal()
   clip()
   print(debug, 0, 100)
   print("points: " .. points)

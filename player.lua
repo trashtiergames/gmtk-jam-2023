@@ -39,11 +39,11 @@ function player:draw()
     player.x,
     player.y
   )
-  rect(
-    player.light.x,
-    player.light.y,
-    player.light.x + player.light.w,
-    player.light.y + player.light.h,
-    10
-  )
+  -- rect(
+  --   player.light.x,
+  --   player.light.y,
+  --   player.light.x + player.light.w,
+  --   player.light.y + player.light.h,
+  --   10
+  -- )
 end

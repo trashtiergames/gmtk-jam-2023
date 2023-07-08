@@ -15,6 +15,7 @@ function sneaky:init()
   self.step_timer = 0
   self.step_timer_max = 1
   self.visible = true
+  self.footstep_range = 4
   self.path = {
     {0, 0},
     {1, 0},
@@ -80,7 +81,7 @@ function sneaky:make_footstep_sfx()
   y_dist = abs(sneaky.gy - player.gy)
   dist =  x_dist + y_dist
 
-  if dist == 3 then
+  if dist > 2 and dist <= self.sneaky.footstep_range then
     sfx(02)
   elseif dist == 2 then
     sfx(03)

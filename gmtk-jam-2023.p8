@@ -8,9 +8,16 @@ __lua__
 #include src/paths.lua
 #include src/sneaky.lua
 #include src/state_machine.lua
+
 #include src/states/title_state.lua
 #include src/states/intro_state.lua
+#include src/states/day_state.lua
+#include src/states/message_state.lua
+#include src/states/arrive_state.lua
+#include src/states/nightfall_state.lua
 #include src/states/play_state.lua
+#include src/states/game_over_state.lua
+
 #include src/main.lua
 __gfx__
 00000000dddddddd1122222222222222222222111122222222222222222222116666666666666666666666666666666600000000000000000000000000000000

@@ -4,7 +4,12 @@ function state_machine:init()
   self.states = {
     title_state = title_state(),
     intro_state = intro_state(),
+    day_state = day_state(),
+    message_state = message_state(),
+    arrive_state = arrive_state(),
+    nightfall_state = nightfall_state(),
     play_state = play_state(),
+    game_over_state = game_over_state(),
   }
   self.current_state = self.states.title_state
 end

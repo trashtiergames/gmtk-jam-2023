@@ -12,42 +12,13 @@ function _init()
     direction = "up"
   }
 
-  sneaky = {
-    gx = 0,
-    gy = 0,
-    x = 0,
-    y = 0,
-    w = 8,
-    h = 8,
-    sprite = 65,
-    state = "sneaking",
-    step = 1,
-    step_timer = 0,
-    step_timer_max = 1,
-    path = {
-      {0, 0},
-      {1, 0},
-      {2, 0},
-      {3, 0},
-      {4, 0},
-      {4, 1},
-      {4, 2},
-      {4, 3},
-      {5, 3},
-      {6, 3},
-      {6, 4},
-      {6, 5},
-      {7, 5},
-      {7, 6},
-      {7, 7}
-    },
-  }
+  sneaky = sneaky()
 
   player.light = {}
 end
 
 function _update60()
-  move_sneaky()
+  sneaky:update()
   move_player()
   update_light(player.direction)
   check_for_sneaky()
@@ -64,7 +35,7 @@ function _draw()
     player.light.w, 
     player.light.h
   )
-  draw_sneaky()
+  sneaky:draw()
   clip()
   print(debug, 0, 100)
 end
@@ -81,14 +52,6 @@ function draw_player()
     player.light.x + player.light.w,
     player.light.y + player.light.h,
     10
-  )
-end
-
-function draw_sneaky()
-  spr(
-    sneaky.sprite,
-    sneaky.x,
-    sneaky.y
   )
 end
 
@@ -110,18 +73,6 @@ function move_player()
   player.x = player.gx * 8
   player.y = player.gy * 8
   print(player.direction)
-end
-
-function move_sneaky()
-  sneaky.step_timer += 1/60
-  if sneaky.step_timer > sneaky.step_timer_max then
-    sneaky.step_timer = 0
-    sneaky.step += 1
-    local coords = sneaky.path[sneaky.step]
-    sneaky.gx, sneaky.gy = coords[1], coords[2]
-    sneaky.x = sneaky.gx * 8
-    sneaky.y = sneaky.gy * 8
-  end
 end
 
 function is_tile(tile_type,x,y)

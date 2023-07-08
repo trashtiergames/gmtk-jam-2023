@@ -78,7 +78,10 @@ end
 
 function check_for_sneaky()
   if collides(sneaky, player.light) then
-    debug = "collision detected"
-    sneaky.state = "discovered"
+    if sneaky.state == "sneaking" then
+      debug = "collision detected"
+      sneaky.state = "discovered"
+      sfx(00)
+    end
   end
 end

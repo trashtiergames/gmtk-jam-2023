@@ -1,6 +1,14 @@
 function _init()
   wall = 0
   debug = "nothing to debug"
+  palette_swap_table = {
+    [1] = 5,
+    [2] = 4,
+    [3] = 11,
+    [9] = 10,
+    [13] = 6,
+    [14] = 7
+  }
   state_machine = state_machine()
 end
 

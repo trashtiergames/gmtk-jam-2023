@@ -13,6 +13,7 @@ function _init()
     x = 0,
     y = 0,
     sprite = 65,
+    state = "sneaking",
     step = 1,
     step_timer = 0,
     step_timer_max = 1,
@@ -32,7 +33,7 @@ function _init()
       {7, 5},
       {7, 6},
       {7, 7}
-    }
+    },
   }
 
   player.light = {
@@ -51,7 +52,14 @@ function _draw()
 	cls()
   map(0, 0, 0, 0)
 	draw_player()
+  clip(
+    player.light.x, 
+    player.light.y, 
+    player.light.w, 
+    player.light.h
+  )
   draw_sneaky()
+  clip()
 end
 
 function draw_player()

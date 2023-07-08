@@ -2,15 +2,16 @@ statemachine = class()
 
 function statemachine:init()
   self.states = {
-    playstate = playstate()
+    titlestate = titlestate(),
+    playstate = playstate(),
   }
-  current_state = self.states.playstate
+  self.current_state = self.states.titlestate
 end
 
 function statemachine:update()
-  current_state:update()
+  self.current_state:update()
 end
 
 function statemachine:draw()
-  current_state:draw()
+  self.current_state:draw()
 end

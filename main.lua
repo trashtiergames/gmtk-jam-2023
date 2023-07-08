@@ -1,6 +1,7 @@
 function _init()
   wall = 0
   debug = "nothing to debug"
+  points = 0
   player = player()
   sneaky = sneaky()
 end
@@ -26,6 +27,7 @@ function _draw()
   sneaky:draw()
   clip()
   print(debug, 0, 100)
+  print("points: " .. points)
 end
 
 function is_tile(tile_type,x,y)
@@ -82,6 +84,7 @@ function check_for_sneaky()
       debug = "collision detected"
       sneaky.state = "discovered"
       sfx(00)
+      points += 1
     end
   end
 end

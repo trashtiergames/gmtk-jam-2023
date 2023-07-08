@@ -19,8 +19,12 @@ function _draw()
 	-- clear screen
 	cls()
   palette_swap_table = {
-    [0] = 5,
-    [5] = 6
+    [1] = 5,
+    [2] = 4,
+    [3] = 11,
+    [9] = 10,
+    [13] = 6,
+    [14] = 7
   }
   map(0, 0, 0, 0)
 	player:draw()
@@ -30,7 +34,13 @@ function _draw()
     player.light.w, 
     player.light.h
   )
-  if (sunny) pal(palette_swap_table) map(0, 0, 0, 0)
+  if sunny then
+    pal(palette_swap_table)
+    -- pal(5, 6)
+    -- -- palt(0, false)
+    -- pal(0, 5)
+    map(0, 0, 0, 0)
+  end
   sneaky:draw()
   pal()
   clip()

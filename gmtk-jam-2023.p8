@@ -4,6 +4,7 @@ __lua__
 -- gmtk jam 2023 game
 -- by trash tier games
 #include class.lua
+#include player.lua
 #include sneaky.lua
 #include my_script.lua
 __gfx__

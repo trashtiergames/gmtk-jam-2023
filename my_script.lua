@@ -1,25 +1,13 @@
 function _init()
   wall = 0
   debug = "nothing to debug"
-
-  player = {
-    -- grid x and y
-    gx = 4,
-    gy = 5,
-    x = 32,
-    y = 40,
-    sprite = 64,
-    direction = "up"
-  }
-
+  player = player()
   sneaky = sneaky()
-
-  player.light = {}
 end
 
 function _update60()
   sneaky:update()
-  move_player()
+  player:update()
   update_light(player.direction)
   check_for_sneaky()
 end
@@ -28,7 +16,7 @@ function _draw()
 	-- clear screen
 	cls()
   map(0, 0, 0, 0)
-	draw_player()
+	player:draw()
   clip(
     player.light.x, 
     player.light.y, 
@@ -38,41 +26,6 @@ function _draw()
   sneaky:draw()
   clip()
   print(debug, 0, 100)
-end
-
-function draw_player()
-  spr(
-    player.sprite,
-    player.x,
-    player.y
-  )
-  rect(
-    player.light.x,
-    player.light.y,
-    player.light.x + player.light.w,
-    player.light.y + player.light.h,
-    10
-  )
-end
-
-function move_player()
-	new_x = player.gx
-	new_y = player.gy
-	
-	if (btnp(0)) new_x -= 1 player.direction = "left"
-	if (btnp(1)) new_x += 1 player.direction = "right"
-	if (btnp(2)) new_y -= 1 player.direction = "up"
-	if (btnp(3)) new_y += 1 player.direction = "down"
-	
-	if can_move(new_x,new_y) then
-		player.gx = mid(0,new_x,7)
-		player.gy = mid(0,new_y,7)
-	else
-		-- sfx(0)
-	end 
-  player.x = player.gx * 8
-  player.y = player.gy * 8
-  print(player.direction)
 end
 
 function is_tile(tile_type,x,y)

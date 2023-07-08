@@ -7,7 +7,10 @@ function sneaky:init()
   self.y = 0
   self.w = 8
   self.h = 8
+  self.target_x = self.x
+  self.target_y = self.y
   self.sprite = 80
+  self.direction = ""
   self.state = "sneaking"
   self.anim_timer = 0
   self.anim_timer_max = 0.2
@@ -17,6 +20,8 @@ function sneaky:init()
   self.visible = true
   self.footstep_range = 4
   self.path = path_a
+  self.tween_fpp = 1
+  self.tween_counter = 0
 end
 
 function sneaky:update()
@@ -34,10 +39,17 @@ function sneaky:update()
         return
       end
       local coords = self.path[self.step]
+      local x_diff = coords[1] - self.gx
+      local y_diff = coords[2] - self.gy
+      if (x_diff == 1) self.direction = "right"
+      if (x_diff == -1) self.direction = "left"
+      if (y_diff == -1) self.direction = "up"
+      if (y_diff == 1) self.direction = "down"
       self.gx, self.gy = coords[1], coords[2]
-      self.x = self.gx * 8
-      self.y = self.gy * 8
+      self.target_x = self.gx * 8
+      self.target_y = self.gy * 8
       self:make_footstep_sfx()
+      self.state = "moving"
     end
   elseif self.state == "discovered" then
     self.anim_timer += 1/60
@@ -47,6 +59,26 @@ function sneaky:update()
     end
   elseif self.state == "gone" then
     self.visible = false
+  end
+  if self.state == "moving" then
+    -- tween x or y if not at target yet
+    if self.x != self.target_x then
+      self.tween_counter += 1
+      if self.tween_counter > self.tween_fpp then
+        if (self.direction == "left") self.x -= 4
+        if (self.direction == "right") self.x += 4
+        self.tween_counter = 0
+      end
+    elseif self.y != self.target_y then
+      self.tween_counter += 1
+      if self.tween_counter > self.tween_fpp then
+        if (self.direction == "up") self.y -= 4
+        if (self.direction == "down") self.y += 4
+        self.tween_counter = 0
+      end
+    else
+      self.state = "sneaking"
+    end
   end
 end
 

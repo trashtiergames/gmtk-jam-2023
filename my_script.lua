@@ -36,9 +36,7 @@ function _init()
     },
   }
 
-  player.light = {
-    x = player.x
-  }
+  player.light = {}
 end
 
 function _update60()

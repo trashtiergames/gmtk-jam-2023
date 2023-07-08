@@ -3,11 +3,13 @@ version 41
 __lua__
 -- gmtk jam 2023 game
 -- by trash tier games
-#include class.lua
-#include player.lua
-#include paths.lua
-#include sneaky.lua
-#include main.lua
+#include lib/class.lua
+#include src/player.lua
+#include src/paths.lua
+#include src/sneaky.lua
+#include src/statemachine.lua
+#include src/states/playstate.lua
+#include src/main.lua
 __gfx__
 00000000dddddddd1122222222222222222222111122222222222222222222110000000000000000000000000000000000000000000000000000000000000000
 00000000dddddddd1112222222222222222221111112222222222222222221110000000000000000000000000000000000000000000000000000000000000000

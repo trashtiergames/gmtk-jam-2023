@@ -49,6 +49,8 @@ function sneaky:update()
       self.target_x = self.gx * 8
       self.target_y = self.gy * 8
       self:make_footstep_sfx()
+      -- 50% chance to leave prints
+      if (flr(rnd(2)) == 0) self:leave_footprint()
       self.state = "moving"
     end
   elseif self.state == "discovered" then
@@ -104,4 +106,9 @@ function sneaky:make_footstep_sfx()
   elseif dist <= 1 then
     sfx(04)
   end
+end
+
+function sneaky:leave_footprint()
+  local new_fp = footprint(self.gx, self.gy, self.direction)
+  add(footprints, new_fp)
 end

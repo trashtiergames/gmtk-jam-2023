@@ -85,9 +85,9 @@ end
 
 function player:draw()
   spr(
-    player.sprite,
-    player.x,
-    player.y
+    self.sprite,
+    self.x,
+    self.y
   )
   -- rect(
   --   player.light.x,

@@ -5,6 +5,7 @@ function play_state:init()
   player = player()
   sneaky = sneaky(0, 0, path_a)
   msg_box = "points: " .. points
+  footprints = {}
   self.msg_timer = 0
   self.msg_timer_max = 3
 end
@@ -42,7 +43,10 @@ function play_state:draw()
   map(0, 0, 0, 0)
   pal()
 
-  clip()
   sneaky:draw()
-  print(msg_box, 26, 1)
+  for fp in all(footprints) do
+    fp:draw()
+  end
+
+  clip()
 end

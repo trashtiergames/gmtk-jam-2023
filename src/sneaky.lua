@@ -2,10 +2,10 @@ sneaky = class()
 
 sneaky_presets = {
   {0, 0, path_a},
-  {0, 0, path_c},
-  {0, 0, path_d},
+  {15, 0, path_c},
+  {15, 0, path_d},
   {0, 0, path_e},
-  {0, 0, path_f},
+  {15, 0, path_f},
 }
 
 function sneaky:init(gx, gy, path)

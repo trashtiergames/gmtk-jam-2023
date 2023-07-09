@@ -10,7 +10,7 @@ function play_state:init()
   self.msg_timer = 0
   self.msg_timer_max = 3
   self.sneaky_timer = 0
-  self.sneaky_timer_max = 3
+  self.sneaky_timer_max = 10
   self.next_sneaky_id = 2
   self.g_o_timer = 0
   self.g_o_timer_max = 3
@@ -23,15 +23,6 @@ function play_state:update()
   player:update()
   update_light(player.direction)
   check_for_sneakies()
-  
-
-  if msg_box[1] != "p" then
-    self.msg_timer += 1/60
-    if self.msg_timer > self.msg_timer_max then
-      self.msg_timer = 0
-      msg_box = "points: " .. points
-    end
-  end
 
   self.sneaky_timer += 1/60
   if self.sneaky_timer > self.sneaky_timer_max then
@@ -39,9 +30,17 @@ function play_state:update()
     if (#sneakies < 5) then
       local p = sneaky_presets[self.next_sneaky_id]
       add(sneakies, sneaky(p[1], p[2], p[3]))
-      msg_box = "new intruder arrived somewhere!"
+      msg_box = "new intruder!"
       sfx(8)
       self.next_sneaky_id += 1
+    end
+  end
+
+  if msg_box[1] != "p" then
+    self.msg_timer += 1/60
+    if self.msg_timer > self.msg_timer_max then
+      self.msg_timer = 0
+      msg_box = "points: " .. points
     end
   end
 
@@ -81,7 +80,7 @@ function play_state:draw()
   map(0, 0, 0, 0)
   pal()
 
-  clip()
+  -- clip()
 
   for sneaky in all(sneakies) do
     sneaky:draw()
@@ -91,7 +90,7 @@ function play_state:draw()
     fp:draw()
   end
 
-  -- clip()
+  clip()
 
   for sneaky in all(sneakies) do
     if (sneaky.state == "discovered") sneaky:draw()

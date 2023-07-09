@@ -9,6 +9,7 @@ function game_over_state:update()
   if (btnp(5)) then
     state_machine = state_machine()
     state_machine.current_state = state_machine.states.title_state
+    music(0, 100)
   end
 end
 

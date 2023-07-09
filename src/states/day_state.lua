@@ -21,12 +21,12 @@ function day_state:update()
     self.msg_triggered = true
     dtb_disp("night is about to fall!")
     dtb_disp("stop the intruders!")
-    dtb_disp("they will arrive at the blinking dots at the top and make their way to the blinking dots at the bottom", self.after_textboxes)
+    dtb_disp("they will try to get from the top dots to the bottom dots", self.after_textboxes)
   end
 end
 
 function day_state:draw()
-  cls()
+  cls(2)
   pal(palette_swap_table)
   map(0, 0, 0, 0)
   pal()

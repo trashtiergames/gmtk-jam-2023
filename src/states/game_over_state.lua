@@ -14,7 +14,7 @@ function game_over_state:update()
 end
 
 function game_over_state:draw()
-	cls()
+	cls(2)
   str1 = "game over"
   str2 = "you got " .. points .. " points"
   str3 = "press ❎ to restart"

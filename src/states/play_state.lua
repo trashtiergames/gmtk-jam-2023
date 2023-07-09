@@ -12,6 +12,8 @@ function play_state:init()
   self.sneaky_timer = 0
   self.sneaky_timer_max = 3
   self.next_sneaky_id = 2
+  self.g_o_timer = 0
+  self.g_o_timer_max = 3
 end
 
 function play_state:update()
@@ -43,6 +45,22 @@ function play_state:update()
     end
   end
 
+
+  -- game over condition
+  if #sneakies == 5 then
+    local n_sneaking = 0
+    for sneaky in all(sneakies) do
+      if sneaky.state == "sneaking" then
+        n_sneaking += 1
+      end
+    end
+    if n_sneaking == 0 then
+      self.g_o_timer += 1/60
+      if self.g_o_timer > self.g_o_timer_max then
+        state_machine.current_state = state_machine.states.game_over_state
+      end
+    end
+  end
   if (btnp(5)) state_machine.current_state = state_machine.states.game_over_state
 end
 

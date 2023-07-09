@@ -77,13 +77,15 @@ function collides(a, b)
   end
 end
 
-function check_for_sneaky()
-  if collides(sneaky, player.light) then
-    if sneaky.state == "sneaking" then
-      sneaky.state = "discovered"
-      sfx(6)
-      msg_box = "found a sneaky"
-      points += 1
+function check_for_sneakies()
+  for sneaky in all(sneakies) do
+    if collides(sneaky, player.light) then
+      if sneaky.state == "sneaking" then
+        sneaky.state = "discovered"
+        sfx(6)
+        msg_box = "found a sneaky!"
+        points += 1
+      end
     end
   end
 end

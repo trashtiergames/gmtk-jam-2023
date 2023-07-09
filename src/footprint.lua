@@ -30,7 +30,3 @@ function footprint:draw()
     self.flip_y
   )
 end
-
-function footprint:log_sth()
-  msg_box = "footprint says: " .. rnd(2)
-end

@@ -1,5 +1,13 @@
 sneaky = class()
 
+sneaky_presets = {
+  {0, 0, path_a},
+  {0, 0, path_c},
+  {0, 0, path_d},
+  {0, 0, path_e},
+  {0, 0, path_f},
+}
+
 function sneaky:init(gx, gy, path)
   self.gx = gx
   self.gy = gy
@@ -95,8 +103,8 @@ function sneaky:draw()
 end
 
 function sneaky:make_footstep_sfx()
-  x_dist = abs(sneaky.gx - player.gx)
-  y_dist = abs(sneaky.gy - player.gy)
+  x_dist = abs(self.gx - player.gx)
+  y_dist = abs(self.gy - player.gy)
   dist =  x_dist + y_dist
 
   if dist > 2 and dist <= self.footstep_range then

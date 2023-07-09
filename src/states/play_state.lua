@@ -11,6 +11,7 @@ function play_state:update()
   player:update()
   update_light(player.direction)
   check_for_sneaky()
+  if (btnp(5)) state_machine.current_state = state_machine.states.game_over_state
 end
 
 function play_state:draw()

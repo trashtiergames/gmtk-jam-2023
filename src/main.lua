@@ -86,3 +86,14 @@ function check_for_sneaky()
     end
   end
 end
+
+function x_center(s)
+  -- screen center minus the string length times the 
+  -- pixels in a char's width, cut in half
+  return 64-#s*2
+end
+
+function y_center(s)
+  -- screen center minus the string height in pixels, cut in half
+  return 61
+end

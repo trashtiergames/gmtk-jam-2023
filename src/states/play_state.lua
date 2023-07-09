@@ -60,7 +60,7 @@ function play_state:update()
       end
     end
   end
-  if (btnp(5)) state_machine.current_state = state_machine.states.game_over_state
+  -- if (btnp(5)) state_machine.current_state = state_machine.states.game_over_state
 end
 
 function play_state:draw()

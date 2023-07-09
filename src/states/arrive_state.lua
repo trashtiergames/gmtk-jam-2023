@@ -33,6 +33,7 @@ function arrive_state:update()
 
   if self.sound_played and not self.msg_triggered then
     self.msg_triggered = true
+    textbox_y_offset = 90
     dtb_disp("it's getting dark!")
     dtb_disp("time to sneak in!")
     dtb_disp("heh he hehe heh he", self.after_textboxes)
@@ -48,5 +49,6 @@ function arrive_state:draw()
 end
 
 function arrive_state:after_textboxes()
+  textbox_y_offset = 50
   state_machine.current_state = state_machine.states.play_state
 end

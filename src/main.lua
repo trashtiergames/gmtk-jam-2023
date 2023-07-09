@@ -1,6 +1,7 @@
 function _init()
   wall = 0
   debug = "nothing to debug"
+  textbox_y_offset = 50
   palette_swap_table = {
     [1] = 5,
     [2] = 4,
@@ -22,7 +23,7 @@ end
 
 function _draw()
   state_machine:draw()
-  camera(0, 50)
+  camera(0, textbox_y_offset)
   dtb_draw()
   camera()
 end

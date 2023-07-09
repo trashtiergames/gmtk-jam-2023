@@ -1,6 +1,5 @@
 function _init()
   wall = 0
-  debug = "nothing to debug"
   textbox_y_offset = 50
   palette_swap_table = {
     [1] = 5,
@@ -15,6 +14,7 @@ function _init()
   dtb_init()
   state_machine = state_machine()
   music(0, 100)
+  
 end
 
 function _update60()
@@ -80,9 +80,9 @@ end
 function check_for_sneaky()
   if collides(sneaky, player.light) then
     if sneaky.state == "sneaking" then
-      debug = "collision detected"
       sneaky.state = "discovered"
       sfx(6)
+      msg_box = "found a sneaky"
       points += 1
     end
   end

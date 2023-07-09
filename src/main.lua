@@ -44,23 +44,23 @@ end
 function update_light(direction)
   if (player.direction == "left") then
     player.light.x = (player.gx - 1) * 8
-    player.light.y = (player.gy - 1) * 8
+    player.light.y = player.gy * 8
     player.light.w = 8
-    player.light.h = 8 * 3
+    player.light.h = 8
   elseif (player.direction == "right") then
     player.light.x = (player.gx + 1) * 8
+    player.light.y = player.gy * 8
+    player.light.w = 8
+    player.light.h = 8
+  elseif (player.direction == "up") then
+    player.light.x = player.gx * 8
     player.light.y = (player.gy - 1) * 8
     player.light.w = 8
-    player.light.h = 8 * 3
-  elseif (player.direction == "up") then
-    player.light.x = (player.gx - 1) * 8
-    player.light.y = (player.gy - 1) * 8
-    player.light.w = 8 * 3
     player.light.h = 8
   elseif (player.direction == "down") then
-    player.light.x = (player.gx - 1) * 8
+    player.light.x = player.gx * 8
     player.light.y = (player.gy + 1) * 8
-    player.light.w = 8 * 3
+    player.light.w = 8
     player.light.h = 8
   end
 end

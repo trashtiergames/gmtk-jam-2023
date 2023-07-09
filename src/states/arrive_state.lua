@@ -1,6 +1,7 @@
 arrive_state = class()
 
 function arrive_state:init()
+  self.player = player()
   self.sneaky = sneaky(-1, 0, path_b)
   self.sneaky.gx = -1
   self.start_wait_timer = 0
@@ -46,9 +47,10 @@ function arrive_state:draw()
   map(0, 0, 0, 0)
   pal()
   self.sneaky:draw()
+  self.player:draw()
 end
 
 function arrive_state:after_textboxes()
   textbox_y_offset = 50
-  state_machine.current_state = state_machine.states.play_state
+  state_machine.current_state = state_machine.states.nightfall_state
 end

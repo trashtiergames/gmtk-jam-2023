@@ -7,6 +7,7 @@ function day_state:init()
   self.msg_trigger = 1
   self.msg_triggered = false
   self.red = false
+  self.player = player()
 end
 
 function day_state:update()
@@ -29,7 +30,7 @@ function day_state:draw()
   pal(palette_swap_table)
   map(0, 0, 0, 0)
   pal()
-
+  self.player:draw()
   if (not self.red) pal(8, 5)
 
   -- top left

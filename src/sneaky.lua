@@ -1,10 +1,10 @@
 sneaky = class()
 
-function sneaky:init()
-  self.gx = 0
-  self.gy = 0
-  self.x = 0
-  self.y = 0
+function sneaky:init(gx, gy, path)
+  self.gx = gx
+  self.gy = gy
+  self.x = self.gx * 8
+  self.y = self.gy * 8
   self.w = 8
   self.h = 8
   self.target_x = self.x
@@ -19,7 +19,7 @@ function sneaky:init()
   self.step_timer_max = 1
   self.visible = true
   self.footstep_range = 4
-  self.path = path_a
+  self.path = path
   self.tween_fpp = 1
   self.tween_counter = 0
 end

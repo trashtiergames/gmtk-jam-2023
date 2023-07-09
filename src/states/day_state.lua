@@ -50,6 +50,5 @@ function day_state:draw()
 end
 
 function day_state:after_textboxes()
-  print("callback called", 5, 5, 8)
-  state_machine.current_state = state_machine.states.play_state
+  state_machine.current_state = state_machine.states.arrive_state
 end
